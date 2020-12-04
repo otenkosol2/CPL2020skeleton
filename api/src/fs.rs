@@ -243,8 +243,6 @@ pub trait DirectorySupport: InodeSupport {
     /// If found, return the `inode` corresponding to this directory entry, and the byte offset (from the start of the inode contents) it was found at, as a pair.
     /// Only inspects directory entries that fall within the `size` of the given `inode`. Errors if the given `inode` is not of directory type.
     /// If the entry is not found, return a suitable error that you can handle later, in the implementation of `dirlink` below.
-    ///
-    /// NOTE: self is mutably borrowed here because might want to call iget
     fn dirlookup(&self, inode: &Self::Inode, name: &str)
         -> Result<(Self::Inode, u64), Self::Error>;
 
